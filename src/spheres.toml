@@ -1,0 +1,178 @@
+[[spaces]]
+id = 1
+name = "Gang 0.0x"
+floor = 0
+
+[[spaces]]
+id = 2
+name = "Gang 0.1x"
+floor = 0
+
+[[spaces]]
+id = 3
+name = "Muondetector"
+floor = 0
+
+[[spaces]]
+id = 4
+name = "Gang 0.2x"
+floor = 0
+
+[[spaces]]
+id = 5
+name = "Gang 0.3x"
+floor = 0
+
+[[spaces]]
+id = 6
+name = "Personeelskamer"
+floor = 0
+
+[[spaces]]
+id = 7
+name = "Gang 0.5x"
+floor = 0
+
+[[spaces]]
+id = 8
+name = "Bepstee"
+floor = -1
+
+[[spaces]]
+id = 9
+name = "Aula"
+floor = 0
+
+[[spaces]]
+id = 10
+name = "Gang 1.0x"
+floor = 1
+
+[[spaces]]
+id = 11
+name = "Gang 1.1x"
+floor = 1
+
+[[spaces]]
+id = 12
+name = "Gang 0.0x"
+floor = 0
+
+[[spaces]]
+id = 1
+name = "Gang 0.0x"
+floor = 0
+
+[[spaces]]
+id = 1
+name = "Gang 0.0x"
+floor = 0
+
+[[spaces]]
+id = 1
+name = "Gang 0.0x"
+floor = 0
+
+[[spaces]]
+id = 1
+name = "Gang 0.0x"
+floor = 0
+
+[[spaces]]
+id = 1
+name = "Gang 0.0x"
+floor = 0
+
+[[spaces]]
+id = 1
+name = "Gang 0.0x"
+floor = 0
+
+[[spaces]]
+id = 1
+name = "Gang 0.0x"
+floor = 0
+
+[[spaces]]
+id = 1
+name = "Gang 0.0x"
+floor = 0
+
+[[spaces]]
+id = 1
+name = "Gang 0.0x"
+floor = 0
+
+[[spaces]]
+id = 1
+name = "Gang 0.0x"
+floor = 0
+
+[[spaces]]
+id = 1
+name = "Gang 0.0x"
+floor = 0
+
+[[spaces]]
+id = 1
+name = "Gang 0.0x"
+floor = 0
+
+[[spaces]]
+id = 1
+name = "Gang 0.0x"
+floor = 0
+
+[[spaces]]
+id = 1
+name = "Gang 0.0x"
+floor = 0
+
+#############
+
+[[spheres]]
+id = "0101"
+space = 1
+neighbours = [
+    {id="0102", angle=0}
+]
+
+[[spheres]]
+id = "0102"
+space = 1
+neighbours = [
+    {id="0101", angle=270},
+    {id="0103", angle=100}
+]
+
+[[spheres]]
+id = "0103"
+space = 1
+neighbours = [
+    {id="0102", angle=200},
+    {id="0104", angle=20}
+]
+
+[[spheres]]
+id = "0104"
+space = 1
+neighbours = [
+    {id="0103", angle=0},
+    {id="0105", angle=180}
+]
+
+[[spheres]]
+id = "0105"
+space = 1
+neighbours = [
+    {id="0104", angle=270},
+    {id="0106", angle=90}
+]
+
+[[spheres]]
+id = "0106"
+space = 1
+neighbours = [
+    {id="0105", angle=90},
+    {id="0201", angle=180}
+]
