@@ -91,10 +91,7 @@ async fn main() -> std::io::Result<()> {
     env_logger::init_from_env(Env::default().default_filter_or("info"));
 
     let path = std::path::Path::new("src/spheres.toml");
-    let file = match std::fs::read_to_string(path) {
-        Ok(f) => f,
-        Err(e) => panic!("{}", e),
-    };
+    let file = std::fs::read_to_string(path)?;
 
     HttpServer::new(move || {
         App::new()
