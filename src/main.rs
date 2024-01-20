@@ -1,20 +1,11 @@
-#[macro_use]
-extern crate tera;
-#[macro_use]
-extern crate lazy_static;
-extern crate serde_json;
-
 use actix_files as fs;
 use actix_web::middleware::Logger;
-use actix_web::{get, post, web, App, HttpResponse, HttpServer, Responder};
+use actix_web::{get, web, App, HttpResponse, HttpServer, Responder};
 use env_logger::Env;
-use serde::Serialize;
+use lazy_static::lazy_static;
 use serde_json::value::{to_value, Value};
 use std::collections::HashMap;
-use std::error::Error;
-use std::iter::Map;
-use tera::{Context, Result, Tera};
-use toml::Table;
+use tera::{try_get_value, Context, Result, Tera};
 
 struct AppState {
     sphere_data: toml::Table,
