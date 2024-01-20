@@ -8,10 +8,17 @@ use actix_files as fs;
 use actix_web::middleware::Logger;
 use actix_web::{get, post, web, App, HttpResponse, HttpServer, Responder};
 use env_logger::Env;
+use serde::Serialize;
 use serde_json::value::{to_value, Value};
 use std::collections::HashMap;
 use std::error::Error;
+use std::iter::Map;
 use tera::{Context, Result, Tera};
+use toml::Table;
+
+struct AppState {
+    sphere_data: toml::Table,
+}
 
 lazy_static! {
     pub static ref TEMPLATES: Tera = {
@@ -39,32 +46,73 @@ fn get_arrow_coords(angle: u16) -> (f32, f32) {
 }
 
 #[get("/")]
-async fn hello() -> impl Responder {
+async fn hello(_data: web::Data<AppState>) -> impl Responder {
     HttpResponse::Ok().body("Hello world!")
 }
 
-#[get("/sphere/{sphere_id}/{angle}")]
-async fn sphere(path: web::Path<(String, u16)>) -> impl Responder {
-    let (sphere_id, angle) = path.into_inner();
+#[get("/sphere")]
+async fn sphere(_data: web::Data<AppState>) -> impl Responder {
     let mut context = Context::new();
-
-    context.insert("sphere_id", &sphere_id);
-    context.insert("arrow_angle", &angle);
-    context.insert("arrow_coords", &get_arrow_coords(angle));
 
     let template = TEMPLATES.render("sphere.html", &context).expect("Error!");
 
     HttpResponse::Ok().body(template)
 }
 
+#[get("/api/sphere_data/{sphere_id}")]
+async fn api_sphere_data(data: web::Data<AppState>, path: web::Path<String>) -> impl Responder {
+    let sphere_id = path.into_inner();
+
+    let mut sphere_data_list: Vec<&toml::Value> = data.sphere_data["spheres"]
+        .as_array()
+        .unwrap_or_else(|| panic!("Expected an array"))
+        .iter()
+        .filter(|sp| sp["id"].as_str() == Some(sphere_id.as_str()))
+        .collect();
+
+    match sphere_data_list.first_mut() {
+        Some(sphere_data) => {
+            let mut resp_data = sphere_data.clone();
+            
+            for i in 0..resp_data["neighbours"].as_array().expect("").len() {
+                if let Some(n_data) = resp_data["neighbours"][i].as_table_mut() {
+                    let (x, y) = get_arrow_coords(n_data["angle"].clone().try_into::<u16>().unwrap());
+                    
+                    let coord_data = toml::Value::Table([
+                        ("x".to_string(), toml::Value::Float(x as f64)),
+                        ("y".to_string(), toml::Value::Float(y as f64))
+                    ].iter().cloned().collect());
+                    n_data.insert("coordinates".to_string(), coord_data);
+                    println!("{}", n_data["id"]);
+                }
+            }
+
+            HttpResponse::Ok().json(resp_data)
+        },
+        None => HttpResponse::BadRequest()
+            .content_type("application/json")
+            .body("{\"Error\": \"Invalid sphere_id\"}"),
+    }
+}
+
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     env_logger::init_from_env(Env::default().default_filter_or("info"));
 
-    HttpServer::new(|| {
+    let path = std::path::Path::new("src/spheres.toml");
+    let file = match std::fs::read_to_string(path) {
+        Ok(f) => f,
+        Err(e) => panic!("{}", e),
+    };
+
+    HttpServer::new(move || {
         App::new()
+            .app_data(web::Data::new(AppState {
+                sphere_data: file.parse().unwrap(),
+            }))
             .service(hello)
             .service(sphere)
+            .service(api_sphere_data)
             .service(fs::Files::new("/static/spheres", "assets/spheres/").show_files_listing())
             .wrap(Logger::default())
             .wrap(Logger::new("%a %{User-Agent}i"))

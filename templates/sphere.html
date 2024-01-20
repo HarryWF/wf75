@@ -1,25 +1,65 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+
+    <script>
+      $.urlParam = function(name){
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (results) {
+          return results[1] || 0;
+        } else {
+          return 0
+        }
+      }
+
+      jQuery.fn.exists = function(){return this.length>0;}
+
+      function load_arrows(id) {
+        $.ajax({url: `../api/sphere_data/${id}`, success: function(sphere_data){
+          console.log(sphere_data);
+          for (const n_data of sphere_data["neighbours"]) {
+            $("a-scene").append(`<a-triangle id="ar${n_data["id"]}" class="arrow" color="#F0F" position="${n_data["coordinates"]["x"]} 0 ${n_data["coordinates"]["y"]}" rotation="-90 -${n_data["angle"]} 0" scale="0.6"></a-triangle>`)
+          }
+        }});
+      }
+
+      function clear_arrows() {
+        $(".arrow").remove();
+      }
+
+      function set_sphere(id) {
+        if (!$(`#sp${id}`).exists()) {
+          $("#assets").append(`<img id="sp${id}" crossorigin="anonymous" src="https://werenfridus75.nl/static/spheres/${id}.jpg">`);
+        }
+        $("#sky").attr("src", `#sp${id}`);
+        clear_arrows();
+        load_arrows(id);
+      }
+
+      $(".arrow").on("click", function(e) {
+        console.log(e);
+      });
+    </script>
   </head>
   <body>
-    
-
     <a-scene>
-      <a-assets>
-        <img id="sp" crossorigin="anonymous" src="https://werenfridus75.nl/static/spheres/{{ sphere_id }}.jpg">
+      <a-assets id="assets">
+        <img id="" class="sp" crossorigin="anonymous" src="">
       </a-assets>
-
-      <!-- <a-triangle color="#CCC" position="0 0 -2" rotation="-90 0 0" scale="0.6"></a-triangle>
-      <a-triangle color="#F00" position="-2 0 0" rotation="-90 90 0" scale="0.6"></a-triangle>
-      <a-triangle color="#0F0" position="0 0 2" rotation="-90 180 0" scale="0.6"></a-triangle>
-      <a-triangle color="#00F" position="2 0 0" rotation="-90 270 0" scale="0.6"></a-triangle> -->
-      <a-triangle color="#F0F" position="{{ arrow_coords.0 }} 0 {{ arrow_coords.1 }}" rotation="-90 -{{ arrow_angle }} 0" scale="0.6"></a-triangle>
-      <!-- <a-triangle color="#F0F" position="0 0 0" rotation="-90 {{ arrow_angle }} 0" scale="0.6"></a-triangle> -->
-      <a-sky src="#sp" rotation="0 90 0"></a-sky>
-
+      <!-- <a-triangle color="#F0F" position="0 0 1 " rotation="-90 -0 0" scale="0.6"></a-triangle> -->
+      <a-sky id="sky" src="#sp" rotation="0 90 0"></a-sky>
       <a-camera wasd-controls-enabled="false"></a-camera>
     </a-scene>
+
+    <script>
+      if ($.urlParam("id") != 0) {
+        set_sphere($.urlParam("id"));
+      } else {
+        set_sphere("0209");
+      }
+      
+    </script>
   </body>
 </html>
