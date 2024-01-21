@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "tools"
+version = "0.1.0"
+description = ""
+authors = ["Sam van Kampen <sam@tehsvk.net>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+tomli-w = "^1.0.0"
+tomli = "^2.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
