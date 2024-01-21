@@ -201,3 +201,157 @@ neighbours = [
     { id = "0201", angle = 283 },
     { id = "0202", angle = 103 },
 ]
+
+[[spheres]]
+id = "1419"
+space = -1
+neighbours = [
+    { id = "1420", angle = -1 },
+    { id = "1412", angle = -1 },
+]
+
+[[spheres]]
+id = "1420"
+space = -1
+neighbours = [
+    { id = "1419", angle = -1 },
+    { id = "1421", angle = -1 },
+]
+
+[[spheres]]
+id = "1421"
+space = -1
+neighbours = [
+    { id = "1420", angle = -1 },
+    { id = "1424", angle = -1 },
+    { id = "1422", angle = -1 },
+]
+
+[[spheres]]
+id = "1424"
+space = -1
+neighbours = [
+    { id = "1421", angle = -1 },
+]
+
+[[spheres]]
+id = "1422"
+space = -1
+neighbours = [
+    { id = "1421", angle = -1 },
+    { id = "1423", angle = -1 },
+]
+
+[[spheres]]
+id = "1423"
+space = -1
+neighbours = [
+    { id = "1422", angle = -1 },
+]
+
+[[spheres]]
+id = "1907"
+space = -1
+neighbours = [
+    { id = "1903", angle = -1 },
+]
+
+[[spheres]]
+id = "1903"
+space = -1
+neighbours = [
+    { id = "1907", angle = -1 },
+    { id = "1904", angle = -1 },
+    { id = "1902", angle = -1 },
+]
+
+[[spheres]]
+id = "1904"
+space = -1
+neighbours = [
+    { id = "1903", angle = -1 },
+    { id = "1905", angle = -1 },
+]
+
+[[spheres]]
+id = "1905"
+space = -1
+neighbours = [
+    { id = "1904", angle = -1 },
+    { id = "1906", angle = -1 },
+]
+
+[[spheres]]
+id = "1906"
+space = -1
+neighbours = [
+    { id = "1905", angle = -1 },
+]
+
+[[spheres]]
+id = "1902"
+space = -1
+neighbours = [
+    { id = "1903", angle = -1 },
+    { id = "1901", angle = -1 },
+]
+
+[[spheres]]
+id = "1901"
+space = -1
+neighbours = [
+    { id = "1902", angle = -1 },
+]
+
+[[spheres]]
+id = "1412"
+space = -1
+neighbours = [
+    { id = "1419", angle = -1 },
+]
+
+[[spheres]]
+id = "1007"
+space = -1
+neighbours = [
+    { id = "1805", angle = -1 },
+]
+
+[[spheres]]
+id = "1805"
+space = -1
+neighbours = [
+    { id = "1007", angle = -1 },
+    { id = "1804", angle = -1 },
+]
+
+[[spheres]]
+id = "1804"
+space = -1
+neighbours = [
+    { id = "1805", angle = -1 },
+    { id = "1803", angle = -1 },
+]
+
+[[spheres]]
+id = "1803"
+space = -1
+neighbours = [
+    { id = "1804", angle = -1 },
+    { id = "1802", angle = -1 },
+]
+
+[[spheres]]
+id = "1802"
+space = -1
+neighbours = [
+    { id = "1803", angle = -1 },
+    { id = "1801", angle = -1 },
+]
+
+[[spheres]]
+id = "1801"
+space = -1
+neighbours = [
+    { id = "1802", angle = -1 },
+]
