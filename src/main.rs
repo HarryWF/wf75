@@ -101,7 +101,7 @@ async fn main() -> std::io::Result<()> {
             .service(hello)
             .service(sphere)
             .service(api_sphere_data)
-            .service(fs::Files::new("/static/spheres", "assets/spheres/").show_files_listing())
+            .service(fs::Files::new("/static/", "assets/").show_files_listing())
             .wrap(Logger::default())
             .wrap(Logger::new("%a %{User-Agent}i"))
     })
