@@ -8,6 +8,24 @@
       var PREV_SPHERE = null;
       var CUR_SPHERE = null;
 
+      AFRAME.registerComponent('edges', {
+        addedEdges: false,
+        tick: function(time, timeDelta) {
+          let mesh = this.el.getObject3D("mesh");
+
+          if (mesh === undefined || this.addedEdges) {
+            return;
+          }
+
+          let arrow_obj = mesh.children[0];
+          let edges_geom = new THREE.EdgesGeometry(arrow_obj.geometry);
+          let line = new THREE.LineSegments(edges_geom, new THREE.LineBasicMaterial({ color: 0x000000 }));
+
+          arrow_obj.add(line);
+          this.addedEdges = true;
+        }
+      });
+
       $.urlParam = function(name){
         var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
         if (results) {
@@ -21,7 +39,7 @@
 
       function draw_arrows(sphere_data) {
         for (const n_data of sphere_data["neighbours"]) {
-          $("a-scene").append(`<a-entity gltf-model="#arrow" id="ar${n_data["id"]}" class="arrow" mixin="bounce" position="${n_data["coordinates"]["x"]} 0.5 ${n_data["coordinates"]["y"]}" rotation="0 -${n_data["angle"]} 0"></a-entity>`)
+          $("a-scene").append(`<a-entity gltf-model="#arrow" id="ar${n_data["id"]}" class="arrow" mixin="bounce" position="${n_data["coordinates"]["x"]} 0.5 ${n_data["coordinates"]["y"]}" rotation="0 -${n_data["angle"]} 0" edges></a-entity>`)
         }
 
         $(".arrow").on("click", function(e) {
