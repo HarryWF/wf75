@@ -31,7 +31,7 @@ spaces = [
 id = "0101"
 space = 1
 neighbours = [
-    { id = "0102", angle = 0 },
+    {id="0102", angle=0}
 ]
 
 
@@ -39,8 +39,8 @@ neighbours = [
 id = "0102"
 space = 1
 neighbours = [
-    { id = "0101", angle = 270 },
-    { id = "0103", angle = 100 },
+    {id="0101", angle=270},
+    {id="0103", angle=100}
 ]
 
 
@@ -48,8 +48,8 @@ neighbours = [
 id = "0103"
 space = 1
 neighbours = [
-    { id = "0102", angle = 200 },
-    { id = "0104", angle = 20 },
+    {id="0102", angle=200},
+    {id="0104", angle=20}
 ]
 
 
@@ -57,8 +57,8 @@ neighbours = [
 id = "0104"
 space = 1
 neighbours = [
-    { id = "0103", angle = 0 },
-    { id = "0105", angle = 180 },
+    {id="0103", angle=0},
+    {id="0105", angle=180}
 ]
 
 
@@ -66,8 +66,8 @@ neighbours = [
 id = "0105"
 space = 1
 neighbours = [
-    { id = "0104", angle = 270 },
-    { id = "0106", angle = 90 },
+    {id="0104", angle=270},
+    {id="0106", angle=90}
 ]
 
 
@@ -75,8 +75,8 @@ neighbours = [
 id = "0106"
 space = 1
 neighbours = [
-    { id = "0105", angle = 90 },
-    { id = "0201", angle = 180 },
+    {id="0105", angle=90},
+    {id="0201", angle=180}
 ]
 
 
@@ -231,8 +231,37 @@ neighbours = [
 id = "0216"
 space = 2
 neighbours = [
-    {id="0201", angle=283},
-    {id="0202", angle=103}
+    {id="0215", angle=283},
+    {id="1213", angle=103}
+]
+
+
+[[spheres]]
+id = "0301"
+space = 3
+neighbours = [
+    {id="0214", angle=283},
+    {id="0302", angle=283}
+]
+
+
+[[spheres]]
+id = "0302"
+space = 3
+neighbours = [
+    {id="0301", angle=283},
+    {id="0303", angle=283}
+]
+
+
+[[spheres]]
+id = "0303"
+space = 3
+neighbours = [
+    {id="0302", angle=283},
+    {id="0401", angle=283},
+    {id="0707", angle=283},
+    {id="2401", angle=283}
 ]
 
 
@@ -408,6 +437,160 @@ neighbours = [
     {id="2101", angle=283}
 ]
 
+
+[[spheres]]
+id = "1419"
+space = -1
+neighbours = [
+    { id = "1420", angle = -1 },
+    { id = "1412", angle = -1 },
+]
+
+[[spheres]]
+id = "1420"
+space = -1
+neighbours = [
+    { id = "1419", angle = -1 },
+    { id = "1421", angle = -1 },
+]
+
+[[spheres]]
+id = "1421"
+space = -1
+neighbours = [
+    { id = "1420", angle = -1 },
+    { id = "1424", angle = -1 },
+    { id = "1422", angle = -1 },
+]
+
+[[spheres]]
+id = "1424"
+space = -1
+neighbours = [
+    { id = "1421", angle = -1 },
+]
+
+[[spheres]]
+id = "1422"
+space = -1
+neighbours = [
+    { id = "1421", angle = -1 },
+    { id = "1423", angle = -1 },
+]
+
+[[spheres]]
+id = "1423"
+space = -1
+neighbours = [
+    { id = "1422", angle = -1 },
+]
+
+[[spheres]]
+id = "1907"
+space = -1
+neighbours = [
+    { id = "1903", angle = -1 },
+]
+
+[[spheres]]
+id = "1903"
+space = -1
+neighbours = [
+    { id = "1907", angle = -1 },
+    { id = "1904", angle = -1 },
+    { id = "1902", angle = -1 },
+]
+
+[[spheres]]
+id = "1904"
+space = -1
+neighbours = [
+    { id = "1903", angle = -1 },
+    { id = "1905", angle = -1 },
+]
+
+[[spheres]]
+id = "1905"
+space = -1
+neighbours = [
+    { id = "1904", angle = -1 },
+    { id = "1906", angle = -1 },
+]
+
+[[spheres]]
+id = "1906"
+space = -1
+neighbours = [
+    { id = "1905", angle = -1 },
+]
+
+[[spheres]]
+id = "1902"
+space = -1
+neighbours = [
+    { id = "1903", angle = -1 },
+    { id = "1901", angle = -1 },
+]
+
+[[spheres]]
+id = "1901"
+space = -1
+neighbours = [
+    { id = "1902", angle = -1 },
+]
+
+[[spheres]]
+id = "1412"
+space = -1
+neighbours = [
+    { id = "1419", angle = -1 },
+]
+
+[[spheres]]
+id = "1007"
+space = -1
+neighbours = [
+    { id = "1805", angle = -1 },
+]
+
+[[spheres]]
+id = "1805"
+space = -1
+neighbours = [
+    { id = "1007", angle = -1 },
+    { id = "1804", angle = -1 },
+]
+
+[[spheres]]
+id = "1804"
+space = -1
+neighbours = [
+    { id = "1805", angle = -1 },
+    { id = "1803", angle = -1 },
+]
+
+[[spheres]]
+id = "1803"
+space = -1
+neighbours = [
+    { id = "1804", angle = -1 },
+    { id = "1802", angle = -1 },
+]
+
+[[spheres]]
+id = "1802"
+space = -1
+neighbours = [
+    { id = "1803", angle = -1 },
+    { id = "1801", angle = -1 },
+]
+
+[[spheres]]
+id = "1801"
+space = -1
+neighbours = [
+    { id = "1802", angle = -1 },
+]
 
 
 
