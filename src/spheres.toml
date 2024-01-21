@@ -109,7 +109,6 @@ neighbours = [
     { id = "0203", angle = 103 },
     { id = "0205", angle = 90 },
     { id = "1008", angle = 90 },
-    { id = "1008", angle = -1 },
 ]
 
 [[spheres]]
@@ -215,7 +214,6 @@ space = 2
 neighbours = [
     { id = "0215", angle = 283 },
     { id = "1213", angle = 103 },
-    { id = "1213", angle = -1 },
 ]
 
 [[spheres]]
@@ -406,7 +404,6 @@ space = -1
 neighbours = [
     { id = "1420", angle = 155 },
     { id = "1412", angle = 205 },
-    { id = "1412", angle = -1 },
 ]
 
 [[spheres]]
@@ -508,7 +505,6 @@ space = -1
 neighbours = [
     { id = "1419", angle = 57 },
     { id = "1407", angle = -1 },
-    { id = "1419", angle = -1 },
     { id = "1413", angle = -1 },
 ]
 
@@ -517,7 +513,6 @@ id = "1007"
 space = -1
 neighbours = [
     { id = "1805", angle = 210 },
-    { id = "1805", angle = -1 },
     { id = "1006", angle = -1 },
 ]
 
@@ -527,7 +522,6 @@ space = -1
 neighbours = [
     { id = "1007", angle = 60 },
     { id = "1804", angle = 180 },
-    { id = "1007", angle = -1 },
 ]
 
 [[spheres]]
@@ -565,10 +559,8 @@ neighbours = [
 id = "2001"
 space = -1
 neighbours = [
-    { id = "2103", angle = -1 },
     { id = "1301", angle = -1 },
     { id = "2002", angle = -1 },
-    { id = "2103", angle = -1 },
     { id = "2103", angle = 12 },
 ]
 
@@ -576,9 +568,6 @@ neighbours = [
 id = "2103"
 space = -1
 neighbours = [
-    { id = "2001", angle = -1 },
-    { id = "2102", angle = -1 },
-    { id = "2001", angle = -1 },
     { id = "2001", angle = 180 },
     { id = "2102", angle = 265 },
 ]
