@@ -1,134 +1,31 @@
-[[spaces]]
-id = 1
-name = "Gang 0.0x"
-floor = 0
-
-[[spaces]]
-id = 2
-name = "Gang 0.1x"
-floor = 0
-
-[[spaces]]
-id = 3
-name = "Muondetector"
-floor = 0
-
-[[spaces]]
-id = 4
-name = "Gang 0.2x"
-floor = 0
-
-[[spaces]]
-id = 5
-name = "Gang 0.3x"
-floor = 0
-
-[[spaces]]
-id = 6
-name = "Personeelskamer"
-floor = 0
-
-[[spaces]]
-id = 7
-name = "Gang 0.5x"
-floor = 0
-
-[[spaces]]
-id = 8
-name = "Bepstee"
-floor = -1
-
-[[spaces]]
-id = 9
-name = "Aula"
-floor = 0
-
-[[spaces]]
-id = 10
-name = "Gang 1.0x"
-floor = 1
-
-[[spaces]]
-id = 11
-name = "Gang 1.1x"
-floor = 1
-
-[[spaces]]
-id = 12
-name = "Gang 0.0x"
-floor = 0
-
-[[spaces]]
-id = 1
-name = "Gang 0.0x"
-floor = 0
-
-[[spaces]]
-id = 1
-name = "Gang 0.0x"
-floor = 0
-
-[[spaces]]
-id = 1
-name = "Gang 0.0x"
-floor = 0
-
-[[spaces]]
-id = 1
-name = "Gang 0.0x"
-floor = 0
-
-[[spaces]]
-id = 1
-name = "Gang 0.0x"
-floor = 0
-
-[[spaces]]
-id = 1
-name = "Gang 0.0x"
-floor = 0
-
-[[spaces]]
-id = 1
-name = "Gang 0.0x"
-floor = 0
-
-[[spaces]]
-id = 1
-name = "Gang 0.0x"
-floor = 0
-
-[[spaces]]
-id = 1
-name = "Gang 0.0x"
-floor = 0
-
-[[spaces]]
-id = 1
-name = "Gang 0.0x"
-floor = 0
-
-[[spaces]]
-id = 1
-name = "Gang 0.0x"
-floor = 0
-
-[[spaces]]
-id = 1
-name = "Gang 0.0x"
-floor = 0
-
-[[spaces]]
-id = 1
-name = "Gang 0.0x"
-floor = 0
-
-[[spaces]]
-id = 1
-name = "Gang 0.0x"
-floor = 0
-
-#############
+spaces = [
+    { id = 1, name = "Gang 0.0x", floor = 0 },
+    { id = 2, name = "Gang 0.1x", floor = 0 },
+    { id = 3, name = "Muondetector", floor = 0 },
+    { id = 4, name = "Gang 0.2x", floor = 0 },
+    { id = 5, name = "Gang 0.3x", floor = 0 },
+    { id = 6, name = "Personeelskamer", floor = 0 },
+    { id = 7, name = "Gang 0.5x", floor = 0 },
+    { id = 8, name = "Bepstee", floor = -1 },
+    { id = 9, name = "Aula", floor = 0 },
+    { id = 10, name = "Gang 1.0x", floor = 1 },
+    { id = 11, name = "Gang 1.1x", floor = 1 },
+    { id = 12, name = "Gang 0.0x", floor = 0 },
+    { id = 1, name = "Gang 0.0x", floor = 0 },
+    { id = 1, name = "Gang 0.0x", floor = 0 },
+    { id = 1, name = "Gang 0.0x", floor = 0 },
+    { id = 1, name = "Gang 0.0x", floor = 0 },
+    { id = 1, name = "Gang 0.0x", floor = 0 },
+    { id = 1, name = "Gang 0.0x", floor = 0 },
+    { id = 1, name = "Gang 0.0x", floor = 0 },
+    { id = 1, name = "Gang 0.0x", floor = 0 },
+    { id = 1, name = "Gang 0.0x", floor = 0 },
+    { id = 1, name = "Gang 0.0x", floor = 0 },
+    { id = 1, name = "Gang 0.0x", floor = 0 },
+    { id = 1, name = "Gang 0.0x", floor = 0 },
+    { id = 1, name = "Gang 0.0x", floor = 0 },
+    { id = 1, name = "Gang 0.0x", floor = 0 },
+]
 
 [[spheres]]
 id = "0101"
