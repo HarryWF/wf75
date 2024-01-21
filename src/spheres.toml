@@ -176,3 +176,131 @@ neighbours = [
     {id="0105", angle=90},
     {id="0201", angle=180}
 ]
+
+[[spheres]]
+id = "0201"
+space = 2
+neighbours = [
+    {id="0106", angle=283},
+    {id="0202", angle=103}
+]
+
+[[spheres]]
+id = "0202"
+space = 2
+neighbours = [
+    {id="0201", angle=283},
+    {id="0202", angle=103}
+]
+
+[[spheres]]
+id = "0203"
+space = 2
+neighbours = [
+    {id="0201", angle=283},
+    {id="0202", angle=103}
+]
+
+[[spheres]]
+id = "0204"
+space = 2
+neighbours = [
+    {id="0201", angle=283},
+    {id="0202", angle=103}
+]
+
+[[spheres]]
+id = "0205"
+space = 2
+neighbours = [
+    {id="0201", angle=283},
+    {id="0202", angle=103}
+]
+
+[[spheres]]
+id = "0206"
+space = 2
+neighbours = [
+    {id="0201", angle=283},
+    {id="0202", angle=103}
+]
+
+[[spheres]]
+id = "0207"
+space = 2
+neighbours = [
+    {id="0201", angle=283},
+    {id="0202", angle=103}
+]
+
+[[spheres]]
+id = "0208"
+space = 2
+neighbours = [
+    {id="0201", angle=283},
+    {id="0202", angle=103}
+]
+
+[[spheres]]
+id = "0209"
+space = 2
+neighbours = [
+    {id="0201", angle=283},
+    {id="0202", angle=103}
+]
+
+[[spheres]]
+id = "0210"
+space = 2
+neighbours = [
+    {id="0201", angle=283},
+    {id="0202", angle=103}
+]
+
+[[spheres]]
+id = "0211"
+space = 2
+neighbours = [
+    {id="0201", angle=283},
+    {id="0202", angle=103}
+]
+
+[[spheres]]
+id = "0212"
+space = 2
+neighbours = [
+    {id="0201", angle=283},
+    {id="0202", angle=103}
+]
+
+[[spheres]]
+id = "0213"
+space = 2
+neighbours = [
+    {id="0201", angle=283},
+    {id="0202", angle=103}
+]
+
+[[spheres]]
+id = "0214"
+space = 2
+neighbours = [
+    {id="0201", angle=283},
+    {id="0202", angle=103}
+]
+
+[[spheres]]
+id = "0215"
+space = 2
+neighbours = [
+    {id="0201", angle=283},
+    {id="0202", angle=103}
+]
+
+[[spheres]]
+id = "0216"
+space = 2
+neighbours = [
+    {id="0201", angle=283},
+    {id="0202", angle=103}
+]
