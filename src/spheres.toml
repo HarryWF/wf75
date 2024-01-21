@@ -32,6 +32,7 @@ id = "0101"
 space = 1
 neighbours = [
     { id = "0102", angle = 0 },
+    { id = "1006", angle = -1 },
 ]
 
 [[spheres]]
@@ -108,6 +109,7 @@ neighbours = [
     { id = "0203", angle = 103 },
     { id = "0205", angle = 90 },
     { id = "1008", angle = 90 },
+    { id = "1008", angle = -1 },
 ]
 
 [[spheres]]
@@ -162,6 +164,7 @@ space = 2
 neighbours = [
     { id = "0209", angle = 283 },
     { id = "0211", angle = 103 },
+    { id = "1002", angle = -1 },
 ]
 
 [[spheres]]
@@ -212,6 +215,7 @@ space = 2
 neighbours = [
     { id = "0215", angle = 283 },
     { id = "1213", angle = 103 },
+    { id = "1213", angle = -1 },
 ]
 
 [[spheres]]
@@ -329,6 +333,7 @@ neighbours = [
     { id = "0410", angle = 283 },
     { id = "0502", angle = 283 },
     { id = "0801", angle = 283 },
+    { id = "1212", angle = -1 },
 ]
 
 [[spheres]]
@@ -401,6 +406,7 @@ space = -1
 neighbours = [
     { id = "1420", angle = 155 },
     { id = "1412", angle = 205 },
+    { id = "1412", angle = -1 },
 ]
 
 [[spheres]]
@@ -501,6 +507,9 @@ id = "1412"
 space = -1
 neighbours = [
     { id = "1419", angle = 57 },
+    { id = "1407", angle = -1 },
+    { id = "1419", angle = -1 },
+    { id = "1413", angle = -1 },
 ]
 
 [[spheres]]
@@ -508,6 +517,8 @@ id = "1007"
 space = -1
 neighbours = [
     { id = "1805", angle = 210 },
+    { id = "1805", angle = -1 },
+    { id = "1006", angle = -1 },
 ]
 
 [[spheres]]
@@ -516,6 +527,7 @@ space = -1
 neighbours = [
     { id = "1007", angle = 60 },
     { id = "1804", angle = 180 },
+    { id = "1007", angle = -1 },
 ]
 
 [[spheres]]
@@ -554,6 +566,9 @@ id = "2001"
 space = -1
 neighbours = [
     { id = "2103", angle = -1 },
+    { id = "1301", angle = -1 },
+    { id = "2002", angle = -1 },
+    { id = "2103", angle = -1 },
 ]
 
 [[spheres]]
@@ -562,6 +577,7 @@ space = -1
 neighbours = [
     { id = "2001", angle = -1 },
     { id = "2102", angle = -1 },
+    { id = "2001", angle = -1 },
 ]
 
 [[spheres]]
@@ -838,4 +854,462 @@ id = "2301"
 space = -1
 neighbours = [
     { id = "2303", angle = -1 },
+]
+
+[[spheres]]
+id = "1006"
+space = -1
+neighbours = [
+    { id = "1007", angle = -1 },
+    { id = "0101", angle = -1 },
+    { id = "1005", angle = -1 },
+]
+
+[[spheres]]
+id = "1005"
+space = -1
+neighbours = [
+    { id = "1006", angle = -1 },
+    { id = "1004", angle = -1 },
+]
+
+[[spheres]]
+id = "1004"
+space = -1
+neighbours = [
+    { id = "1005", angle = -1 },
+    { id = "1003", angle = -1 },
+]
+
+[[spheres]]
+id = "1003"
+space = -1
+neighbours = [
+    { id = "1004", angle = -1 },
+    { id = "1008", angle = -1 },
+    { id = "1002", angle = -1 },
+]
+
+[[spheres]]
+id = "1008"
+space = -1
+neighbours = [
+    { id = "1003", angle = -1 },
+    { id = "0204", angle = -1 },
+]
+
+[[spheres]]
+id = "1002"
+space = -1
+neighbours = [
+    { id = "1003", angle = -1 },
+    { id = "1001", angle = -1 },
+    { id = "0210", angle = -1 },
+]
+
+[[spheres]]
+id = "1001"
+space = -1
+neighbours = [
+    { id = "1002", angle = -1 },
+    { id = "1101", angle = -1 },
+]
+
+[[spheres]]
+id = "1101"
+space = -1
+neighbours = [
+    { id = "1001", angle = -1 },
+    { id = "1701", angle = -1 },
+    { id = "1102", angle = -1 },
+]
+
+[[spheres]]
+id = "1701"
+space = -1
+neighbours = [
+    { id = "1101", angle = -1 },
+    { id = "1702", angle = -1 },
+]
+
+[[spheres]]
+id = "1702"
+space = -1
+neighbours = [
+    { id = "1701", angle = -1 },
+    { id = "1703", angle = -1 },
+]
+
+[[spheres]]
+id = "1703"
+space = -1
+neighbours = [
+    { id = "1702", angle = -1 },
+    { id = "1704", angle = -1 },
+]
+
+[[spheres]]
+id = "1704"
+space = -1
+neighbours = [
+    { id = "1703", angle = -1 },
+]
+
+[[spheres]]
+id = "1102"
+space = -1
+neighbours = [
+    { id = "1101", angle = -1 },
+    { id = "1103", angle = -1 },
+]
+
+[[spheres]]
+id = "1103"
+space = -1
+neighbours = [
+    { id = "1102", angle = -1 },
+    { id = "1104", angle = -1 },
+]
+
+[[spheres]]
+id = "1104"
+space = -1
+neighbours = [
+    { id = "1103", angle = -1 },
+    { id = "1201", angle = -1 },
+]
+
+[[spheres]]
+id = "1201"
+space = -1
+neighbours = [
+    { id = "1104", angle = -1 },
+    { id = "1213", angle = -1 },
+    { id = "1202", angle = -1 },
+]
+
+[[spheres]]
+id = "1213"
+space = -1
+neighbours = [
+    { id = "1201", angle = -1 },
+    { id = "0216", angle = -1 },
+]
+
+[[spheres]]
+id = "1202"
+space = -1
+neighbours = [
+    { id = "1201", angle = -1 },
+    { id = "1203", angle = -1 },
+]
+
+[[spheres]]
+id = "1203"
+space = -1
+neighbours = [
+    { id = "1202", angle = -1 },
+    { id = "1204", angle = -1 },
+]
+
+[[spheres]]
+id = "1204"
+space = -1
+neighbours = [
+    { id = "1203", angle = -1 },
+    { id = "1205", angle = -1 },
+]
+
+[[spheres]]
+id = "1205"
+space = -1
+neighbours = [
+    { id = "1204", angle = -1 },
+    { id = "1206", angle = -1 },
+]
+
+[[spheres]]
+id = "1206"
+space = -1
+neighbours = [
+    { id = "1205", angle = -1 },
+    { id = "1207", angle = -1 },
+]
+
+[[spheres]]
+id = "1207"
+space = -1
+neighbours = [
+    { id = "1206", angle = -1 },
+    { id = "1208", angle = -1 },
+]
+
+[[spheres]]
+id = "1208"
+space = -1
+neighbours = [
+    { id = "1207", angle = -1 },
+    { id = "1209", angle = -1 },
+]
+
+[[spheres]]
+id = "1209"
+space = -1
+neighbours = [
+    { id = "1208", angle = -1 },
+    { id = "1212", angle = -1 },
+    { id = "1210", angle = -1 },
+]
+
+[[spheres]]
+id = "1212"
+space = -1
+neighbours = [
+    { id = "1209", angle = -1 },
+    { id = "0501", angle = -1 },
+]
+
+[[spheres]]
+id = "1210"
+space = -1
+neighbours = [
+    { id = "1209", angle = -1 },
+    { id = "1211", angle = -1 },
+    { id = "1308", angle = -1 },
+]
+
+[[spheres]]
+id = "1211"
+space = -1
+neighbours = [
+    { id = "1210", angle = -1 },
+]
+
+[[spheres]]
+id = "1308"
+space = -1
+neighbours = [
+    { id = "1210", angle = -1 },
+    { id = "1307", angle = -1 },
+]
+
+[[spheres]]
+id = "1307"
+space = -1
+neighbours = [
+    { id = "1308", angle = -1 },
+    { id = "1306", angle = -1 },
+]
+
+[[spheres]]
+id = "1306"
+space = -1
+neighbours = [
+    { id = "1307", angle = -1 },
+    { id = "1305", angle = -1 },
+]
+
+[[spheres]]
+id = "1305"
+space = -1
+neighbours = [
+    { id = "1306", angle = -1 },
+    { id = "1304", angle = -1 },
+]
+
+[[spheres]]
+id = "1304"
+space = -1
+neighbours = [
+    { id = "1305", angle = -1 },
+    { id = "1303", angle = -1 },
+]
+
+[[spheres]]
+id = "1303"
+space = -1
+neighbours = [
+    { id = "1304", angle = -1 },
+    { id = "1302", angle = -1 },
+]
+
+[[spheres]]
+id = "1302"
+space = -1
+neighbours = [
+    { id = "1303", angle = -1 },
+    { id = "1301", angle = -1 },
+]
+
+[[spheres]]
+id = "1301"
+space = -1
+neighbours = [
+    { id = "1302", angle = -1 },
+    { id = "2001", angle = -1 },
+]
+
+[[spheres]]
+id = "2002"
+space = -1
+neighbours = [
+    { id = "2001", angle = -1 },
+    { id = "2003", angle = -1 },
+    { id = "2004", angle = -1 },
+]
+
+[[spheres]]
+id = "2003"
+space = -1
+neighbours = [
+    { id = "2002", angle = -1 },
+]
+
+[[spheres]]
+id = "2004"
+space = -1
+neighbours = [
+    { id = "2002", angle = -1 },
+    { id = "1403", angle = -1 },
+]
+
+[[spheres]]
+id = "1403"
+space = -1
+neighbours = [
+    { id = "2004", angle = -1 },
+    { id = "1402", angle = -1 },
+    { id = "1404", angle = -1 },
+    { id = "1407", angle = -1 },
+]
+
+[[spheres]]
+id = "1402"
+space = -1
+neighbours = [
+    { id = "1403", angle = -1 },
+    { id = "1401", angle = -1 },
+]
+
+[[spheres]]
+id = "1401"
+space = -1
+neighbours = [
+    { id = "1402", angle = -1 },
+]
+
+[[spheres]]
+id = "1404"
+space = -1
+neighbours = [
+    { id = "1403", angle = -1 },
+    { id = "1405", angle = -1 },
+]
+
+[[spheres]]
+id = "1405"
+space = -1
+neighbours = [
+    { id = "1404", angle = -1 },
+    { id = "1406", angle = -1 },
+]
+
+[[spheres]]
+id = "1406"
+space = -1
+neighbours = [
+    { id = "1405", angle = -1 },
+]
+
+[[spheres]]
+id = "1407"
+space = -1
+neighbours = [
+    { id = "1403", angle = -1 },
+    { id = "1408", angle = -1 },
+    { id = "1412", angle = -1 },
+]
+
+[[spheres]]
+id = "1408"
+space = -1
+neighbours = [
+    { id = "1407", angle = -1 },
+    { id = "1409", angle = -1 },
+    { id = "1411", angle = -1 },
+]
+
+[[spheres]]
+id = "1409"
+space = -1
+neighbours = [
+    { id = "1408", angle = -1 },
+    { id = "1410", angle = -1 },
+]
+
+[[spheres]]
+id = "1410"
+space = -1
+neighbours = [
+    { id = "1409", angle = -1 },
+    { id = "1411", angle = -1 },
+]
+
+[[spheres]]
+id = "1411"
+space = -1
+neighbours = [
+    { id = "1410", angle = -1 },
+    { id = "1408", angle = -1 },
+]
+
+[[spheres]]
+id = "1413"
+space = -1
+neighbours = [
+    { id = "1412", angle = -1 },
+    { id = "1414", angle = -1 },
+    { id = "1416", angle = -1 },
+    { id = "1418", angle = -1 },
+]
+
+[[spheres]]
+id = "1414"
+space = -1
+neighbours = [
+    { id = "1413", angle = -1 },
+    { id = "1415", angle = -1 },
+]
+
+[[spheres]]
+id = "1415"
+space = -1
+neighbours = [
+    { id = "1414", angle = -1 },
+    { id = "1416", angle = -1 },
+]
+
+[[spheres]]
+id = "1416"
+space = -1
+neighbours = [
+    { id = "1415", angle = -1 },
+    { id = "1413", angle = -1 },
+    { id = "1417", angle = -1 },
+]
+
+[[spheres]]
+id = "1417"
+space = -1
+neighbours = [
+    { id = "1416", angle = -1 },
+    { id = "1418", angle = -1 },
+]
+
+[[spheres]]
+id = "1418"
+space = -1
+neighbours = [
+    { id = "1417", angle = -1 },
+    { id = "1413", angle = -1 },
 ]
