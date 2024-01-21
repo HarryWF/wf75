@@ -33,7 +33,7 @@ pub fn do_nothing_filter(value: &Value, _: &HashMap<String, Value>) -> Result<Va
 
 fn get_arrow_coords(angle: u16) -> (f32, f32) {
     let rad = f32::from(angle).to_radians();
-    (1.0 * rad.sin(), -1.0 * rad.cos())
+    (1.5 * rad.sin(), -1.5 * rad.cos())
 }
 
 #[get("/")]
@@ -43,7 +43,7 @@ async fn hello(_data: web::Data<AppState>) -> impl Responder {
 
 #[get("/sphere")]
 async fn sphere(_data: web::Data<AppState>) -> impl Responder {
-    let mut context = Context::new();
+    let context = Context::new();
 
     let template = TEMPLATES.render("sphere.html", &context).expect("Error!");
 

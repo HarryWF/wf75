@@ -21,7 +21,7 @@
 
       function draw_arrows(sphere_data) {
         for (const n_data of sphere_data["neighbours"]) {
-          $("a-scene").append(`<a-entity gltf-model="#arrow" id="ar${n_data["id"]}" class="arrow" mixin="bounce" position="${n_data["coordinates"]["x"]} 0 ${n_data["coordinates"]["y"]}" rotation="0 -${n_data["angle"]} 0"></a-entity>`)
+          $("a-scene").append(`<a-entity gltf-model="#arrow" id="ar${n_data["id"]}" class="arrow" mixin="bounce" position="${n_data["coordinates"]["x"]} 0.5 ${n_data["coordinates"]["y"]}" rotation="0 -${n_data["angle"]} 0"></a-entity>`)
         }
 
         $(".arrow").on("click", function(e) {
@@ -50,19 +50,27 @@
         }
       }
 
+      function append_sphere_asset(id) {
+        if (!$(`#sp${id}`).exists()) {
+          console.log(id);
+          $("#assets").append(`<img id="sp${id}" crossorigin="anonymous" src="/static/spheres/${id}.jpg">`);
+        }
+      }
+
       function set_sphere(id) {
         PREV_SPHERE = CUR_SPHERE;
         CUR_SPHERE = id;
 
-        if (!$(`#sp${id}`).exists()) {
-          $("#assets").append(`<img id="sp${id}" crossorigin="anonymous" src="/static/spheres/${id}.jpg">`);
-        }
+        append_sphere_asset(id);
 
         $.ajax({url: `../api/sphere_data/${id}`, success: function(sphere_data){
-          console.log(sphere_data);
           clear_arrows();
           draw_arrows(sphere_data);
-          set_cam_rotation(sphere_data)
+          set_cam_rotation(sphere_data);
+
+          for (const n_data of sphere_data["neighbours"]) {
+            append_sphere_asset(n_data["id"]);
+          }
         }});
 
         $("#sky").attr("src", `#sp${id}`);
