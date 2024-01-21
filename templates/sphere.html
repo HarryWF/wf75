@@ -3,7 +3,7 @@
   <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-    <!-- <script src="/static/js/aframe-animation-component.min.js"></script> -->
+    <link rel="stylesheet" href="/static/style.css" />
 
     <script>
       var PREV_SPHERE = null;
@@ -27,6 +27,32 @@
         }
       });
 
+      AFRAME.registerComponent('measure-angle', {
+        init: function() {
+          this.el.addEventListener('raycaster-intersected', evt => {
+            this.raycaster = evt.detail.el;
+          });
+          this.el.addEventListener('raycaster-intersected-cleared', evt => {
+            this.raycaster = null;
+          });
+        },
+
+        tick: function(t, td) {
+          if (!this.raycaster) { return; }  // Not intersecting.
+
+          let intersection = this.raycaster.components.raycaster.getIntersection(this.el);
+          if (!intersection) { return; }
+
+          let point = intersection.point;
+          let angle = Math.atan2(-point.z, -point.x) * 180 / Math.PI;
+          if (angle < 0) { angle = 360 + angle; }
+
+          angle = angle.toFixed(1);
+
+          $("#angle").text(`Angle: ${angle}`);
+        }
+      });
+
       $.urlParam = function(name){
         var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
         if (results) {
@@ -40,7 +66,7 @@
 
       function draw_arrows(sphere_data) {
         for (const n_data of sphere_data["neighbours"]) {
-          $("a-scene").append(`<a-entity gltf-model="#arrow" id="ar${n_data["id"]}" class="arrow" mixin="bounce" position="${n_data["coordinates"]["x"]} 0.25 ${n_data["coordinates"]["y"]}" rotation="0 -${n_data["angle"]} 0" edges></a-entity>`)
+          $("a-scene").append(`<a-entity gltf-model="#arrow" id="ar${n_data["id"]}" class="clickable arrow" mixin="bounce" position="${n_data["coordinates"]["x"]} 0.5 ${n_data["coordinates"]["y"]}" rotation="0 -${n_data["angle"]} 0" edges></a-entity>`)
         }
 
         $(".arrow").on("click", function(e) {
@@ -101,14 +127,14 @@
     </script>
   </head>
   <body>
-    <a-scene cursor="rayOrigin: mouse; fuse: false" raycaster="objects: .arrow">
+    <a-scene cursor="rayOrigin: mouse; fuse: false" raycaster="objects: .clickable">
       <a-assets id="assets">
         <img id="" class="sp" crossorigin="anonymous" src="">
         <img id="logo" crossorigin="anonymous" src="/static/logo.png">
         <a-asset-item id="arrow" src="/static/arrow.glb"></a-asset-item>
         <a-mixin id="bounce" scale="0.1 0.1 0.1" animation__scale="property: scale; to: 0.12 0.12 0.12; dur: 100; startEvents: mouseenter" animation__scale_reverse="property: scale; to: 0.1 0.1 0.1; dur: 100; startEvents: mouseleave"></a-mixin>
       </a-assets>
-      <a-sky id="sky" src="#sp" rotation="0 90 0"></a-sky>
+      <a-sky id="sky" class="clickable" src="#sp" rotation="0 90 0" measure-angle></a-sky>
       <a-circle color="#FFF" radius="0.60" rotation="-90 0 0"></a-circle>
 
       <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: [gui-interactable]"></a-entity>
@@ -123,6 +149,7 @@
       <a-light type="ambient"></a-light>
       <a-light type="point" intensity="2" position="0 5 0"></a-light>
     </a-scene>
+    <div id="angle"></div>
 
     <script>
       if ($.urlParam("id") != 0) {
