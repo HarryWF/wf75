@@ -58,7 +58,7 @@
         if (results) {
           return results[1] || 0;
         } else {
-          return 0
+          return 0;
         }
       }
 
@@ -66,7 +66,11 @@
 
       function draw_arrows(sphere_data) {
         for (const n_data of sphere_data["neighbours"]) {
-          $("a-scene").append(`<a-entity gltf-model="#arrow" id="ar${n_data["id"]}" class="clickable arrow" mixin="bounce" position="${n_data["coordinates"]["x"]} 0.5 ${n_data["coordinates"]["y"]}" rotation="0 -${n_data["angle"]} 0" edges></a-entity>`)
+          try {
+            $("a-scene").append(`<a-entity gltf-model="#arrow" id="ar${n_data["id"]}" class="clickable arrow" mixin="bounce" position="${n_data["coordinates"]["x"]} 0.5 ${n_data["coordinates"]["y"]}" rotation="0 -${n_data["angle"]} 0" edges></a-entity>`);
+          } catch (e) {
+            console.log(e)
+          }
         }
 
         $(".arrow").on("click", function(e) {
@@ -89,7 +93,7 @@
           console.log(angle);
 
           let controls = document.querySelector('a-camera').components['look-controls'];
-          controls.pitchObject.rotation.x = 0;
+          //controls.pitchObject.rotation.x = 0;
           controls.yawObject.rotation.y = 0;
           $("#cameraWrapper")[0].object3D.rotation.set(0, (180-angle)*(Math.PI/180), 0);
         }

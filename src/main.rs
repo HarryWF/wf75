@@ -67,14 +67,16 @@ async fn api_sphere_data(data: web::Data<AppState>, path: web::Path<String>) -> 
             
             for i in 0..resp_data["neighbours"].as_array().expect("").len() {
                 if let Some(n_data) = resp_data["neighbours"][i].as_table_mut() {
-                    let (x, y) = get_arrow_coords(n_data["angle"].clone().try_into::<u16>().unwrap());
+                    if n_data["angle"].as_integer().expect("") > -1 {
+                        let (x, y) = get_arrow_coords(n_data["angle"].clone().try_into::<u16>().unwrap());
                     
-                    let coord_data = toml::Value::Table([
-                        ("x".to_string(), toml::Value::Float(x as f64)),
-                        ("y".to_string(), toml::Value::Float(y as f64))
-                    ].iter().cloned().collect());
-                    n_data.insert("coordinates".to_string(), coord_data);
-                    println!("{}", n_data["id"]);
+                        let coord_data = toml::Value::Table([
+                            ("x".to_string(), toml::Value::Float(x as f64)),
+                            ("y".to_string(), toml::Value::Float(y as f64))
+                        ].iter().cloned().collect());
+                        n_data.insert("coordinates".to_string(), coord_data);
+                        println!("{}", n_data["id"]);
+                    }
                 }
             }
 
