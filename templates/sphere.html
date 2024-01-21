@@ -5,6 +5,9 @@
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 
     <script>
+      var PREV_SPHERE = null;
+      var CUR_SPHERE = null;
+
       $.urlParam = function(name){
         var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
         if (results) {
@@ -16,32 +19,58 @@
 
       jQuery.fn.exists = function(){return this.length>0;}
 
-      function load_arrows(id) {
-        $.ajax({url: `../api/sphere_data/${id}`, success: function(sphere_data){
-          console.log(sphere_data);
-          for (const n_data of sphere_data["neighbours"]) {
-            $("a-scene").append(`<a-triangle id="ar${n_data["id"]}" class="arrow" color="#F0F" position="${n_data["coordinates"]["x"]} 0 ${n_data["coordinates"]["y"]}" rotation="-90 -${n_data["angle"]} 0" scale="0.6"></a-triangle>`)
-          }
+      function draw_arrows(sphere_data) {
+        for (const n_data of sphere_data["neighbours"]) {
+          $("a-scene").append(`<a-triangle id="ar${n_data["id"]}" class="arrow" color="#F0F" position="${n_data["coordinates"]["x"]} 0 ${n_data["coordinates"]["y"]}" rotation="-90 -${n_data["angle"]} 0" scale="0.6"></a-triangle>`)
+        }
 
-          $(".arrow").on("click", function(e) {
-            let target_id = e.target.id.slice(2);
-            set_sphere(target_id);
-          });
-        }});
+        $(".arrow").on("click", function(e) {
+          let target_id = e.target.id.slice(2);
+          set_sphere(target_id);
+
+          var url = new URL(window.location);
+          url.searchParams.set("id", target_id);
+          window.history.pushState(null, document.title, url.href);
+        });
       }
 
       function clear_arrows() {
         $(".arrow").remove();
       }
 
+      function set_cam_rotation(sphere_data) {
+        if (PREV_SPHERE){
+          const angle = sphere_data["neighbours"].filter((n) => n["id"] == PREV_SPHERE)[0]["angle"];
+          console.log(angle);
+
+          let controls = document.querySelector('a-camera').components['look-controls'];
+          controls.pitchObject.rotation.x = 0;
+          controls.yawObject.rotation.y = 0;
+          $("#cameraWrapper")[0].object3D.rotation.set(0, (180-angle)*(Math.PI/180), 0);
+        }
+      }
+
       function set_sphere(id) {
+        PREV_SPHERE = CUR_SPHERE;
+        CUR_SPHERE = id;
+
         if (!$(`#sp${id}`).exists()) {
           $("#assets").append(`<img id="sp${id}" crossorigin="anonymous" src="/static/spheres/${id}.jpg">`);
         }
+
+        $.ajax({url: `../api/sphere_data/${id}`, success: function(sphere_data){
+          console.log(sphere_data);
+          clear_arrows();
+          draw_arrows(sphere_data);
+          set_cam_rotation(sphere_data)
+        }});
+
         $("#sky").attr("src", `#sp${id}`);
-        clear_arrows();
-        load_arrows(id);
       }
+
+      window.addEventListener('popstate', function() {
+        set_sphere($.urlParam("id"));
+      });
     </script>
   </head>
   <body>
@@ -50,7 +79,10 @@
         <img id="" class="sp" crossorigin="anonymous" src="">
       </a-assets>
       <a-sky id="sky" src="#sp" rotation="0 90 0"></a-sky>
-      <a-camera wasd-controls-enabled="false"></a-camera>
+      
+      <a-entity id='cameraWrapper'>
+        <a-camera wasd-controls-enabled="false" look-controls="reverseMouseDrag: true"></a-camera>
+      </a-entity>
     </a-scene>
 
     <script>
