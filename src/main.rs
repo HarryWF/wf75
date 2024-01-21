@@ -33,7 +33,7 @@ pub fn do_nothing_filter(value: &Value, _: &HashMap<String, Value>) -> Result<Va
 
 fn get_arrow_coords(angle: u16) -> (f32, f32) {
     let rad = f32::from(angle).to_radians();
-    (2.0*rad.sin(), -2.0*rad.cos())
+    (1.0 * rad.sin(), -1.0 * rad.cos())
 }
 
 #[get("/")]
