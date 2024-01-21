@@ -20,7 +20,7 @@
         $.ajax({url: `../api/sphere_data/${id}`, success: function(sphere_data){
           console.log(sphere_data);
           for (const n_data of sphere_data["neighbours"]) {
-            $("a-scene").append(`<a-triangle id="ar${n_data["id"]}" class="arrow" color="#F0F" position="${n_data["coordinates"]["x"]} 0 ${n_data["coordinates"]["y"]}" rotation="-90 -${n_data["angle"]} 0" scale="0.6"></a-triangle>`)
+            $("a-scene").append(`<a-entity gltf-model="#arrow" id="ar${n_data["id"]}" class="arrow" mixin="bounce" position="${n_data["coordinates"]["x"]} 0 ${n_data["coordinates"]["y"]}" rotation="0 -${n_data["angle"]} 0"></a-entity>`)
           }
 
           $(".arrow").on("click", function(e) {
@@ -48,9 +48,14 @@
     <a-scene cursor="rayOrigin: mouse; fuse: false" raycaster="objects: .arrow">
       <a-assets id="assets">
         <img id="" class="sp" crossorigin="anonymous" src="">
+        <a-asset-item id="arrow" src="/static/arrow.glb"></a-asset-item>
+        <a-mixin id="bounce" scale="0.1 0.1 0.1" animation__scale="property: scale; to: 0.12 0.12 0.12; dur: 100; startEvents: mouseenter" animation__scale_reverse="property: scale; to: 0.1 0.1 0.1; dur: 100; startEvents: mouseleave"></a-mixin>
       </a-assets>
       <a-sky id="sky" src="#sp" rotation="0 90 0"></a-sky>
       <a-camera wasd-controls-enabled="false"></a-camera>
+
+      <a-light type="ambient"></a-light>
+      <a-light type="point" intensity="2" position="0 5 0"></a-light>
     </a-scene>
 
     <script>
