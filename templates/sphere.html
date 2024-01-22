@@ -137,12 +137,13 @@
             set_cam_rotation(sphere_data["neighbours"].filter((n) => n["id"] == PREV_SPHERE)[0]["angle"]);
           }
 
+          $("#sky").attr("src", `#sp${id}`);
+
           for (const n_data of sphere_data["neighbours"]) {
             append_sphere_asset(n_data["id"]);
           }
         }});
 
-        $("#sky").attr("src", `#sp${id}`);
       }
 
       window.addEventListener('popstate', function() {
