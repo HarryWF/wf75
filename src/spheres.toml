@@ -958,7 +958,7 @@ neighbours = [
 id = "1420"
 space = -1
 neighbours = [
-    { id = "1419", angle = 276 },
+    { id = "1419", angle = 253 },
     { id = "1421", angle = 210 },
 ]
 
