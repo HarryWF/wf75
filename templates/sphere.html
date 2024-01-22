@@ -56,9 +56,9 @@
       $.urlParam = function(name){
         var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
         if (results) {
-          return results[1] || 0;
+          return results[1] || null;
         } else {
-          return 0;
+          return null;
         }
       }
 
@@ -87,16 +87,12 @@
         $(".arrow").remove();
       }
 
-      function set_cam_rotation(sphere_data) {
-        if (PREV_SPHERE){
-          const angle = sphere_data["neighbours"].filter((n) => n["id"] == PREV_SPHERE)[0]["angle"];
-          console.log(angle);
-
-          let controls = document.querySelector('a-camera').components['look-controls'];
-          //controls.pitchObject.rotation.x = 0;
-          controls.yawObject.rotation.y = 0;
-          $("#cameraWrapper")[0].object3D.rotation.set(0, (180-angle)*(Math.PI/180), 0);
-        }
+      function set_cam_rotation(angle) {
+        console.log(angle);
+        let controls = document.querySelector('a-camera').components['look-controls'];
+        //controls.pitchObject.rotation.x = 0;
+        controls.yawObject.rotation.y = 0;
+        $("#cameraWrapper")[0].object3D.rotation.set(0, (180-angle)*(Math.PI/180), 0);
       }
 
       function append_sphere_asset(id) {
@@ -115,7 +111,10 @@
         $.ajax({url: `../api/sphere_data/${id}`, success: function(sphere_data){
           clear_arrows();
           draw_arrows(sphere_data);
-          set_cam_rotation(sphere_data);
+
+          if (PREV_SPHERE) {
+            set_cam_rotation(sphere_data["neighbours"].filter((n) => n["id"] == PREV_SPHERE)[0]["angle"]);
+          }
 
           for (const n_data of sphere_data["neighbours"]) {
             append_sphere_asset(n_data["id"]);
@@ -156,12 +155,16 @@
     <div id="angle"></div>
 
     <script>
-      if ($.urlParam("id") != 0) {
-        set_sphere($.urlParam("id"));
-      } else {
-        set_sphere("0209");
+      window.onload = function() {
+        if ($.urlParam("id")) {
+          set_sphere($.urlParam("id"));
+        } else {
+          set_sphere("0209");
+        }
+        if ($.urlParam("angle")) {
+          set_cam_rotation($.urlParam("angle"));
+        } 
       }
-      
     </script>
   </body>
 </html>
