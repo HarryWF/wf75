@@ -1,4 +1,4 @@
-#!/usr/bin/env poetry run python
+#!/usr/bin/env -S poetry run python
 import tomli_w
 import readline
 from pprint import pprint
@@ -48,6 +48,7 @@ try:
                 fst, snd = args[0].split('-')
                 add_edge(fst, snd)
             case 'write':
+                data['spheres'].sort(key=lambda d: int(d['id']))
                 with open(args[0], 'wb') as f:
                     tomli_w.dump(data, f)
                 print(f'Wrote data to file {args[0]!r}')
