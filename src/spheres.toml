@@ -99,6 +99,7 @@ neighbours = [
     { id = "0201", angle = 350 },
     { id = "0204", angle = 80 },
     { id = "0205", angle = 130 },
+    { id = "1008", angle = 20 },
 ]
 
 [[spheres]]
@@ -893,6 +894,7 @@ space = -1
 neighbours = [
     { id = "1003", angle = -1 },
     { id = "0204", angle = -1 },
+    { id = "0203", angle = -1 },
 ]
 
 [[spheres]]
