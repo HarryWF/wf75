@@ -27,6 +27,27 @@
         }
       });
 
+      AFRAME.registerComponent('zoomable', {
+        zoomRate: 0.2,
+        init: function () {
+          document.body.addEventListener('wheel', this.handleZoom.bind(this));
+        },
+
+        handleZoom: function(ev) {
+          const delta = Math.sign(event.wheelDelta) * this.zoomRate;
+
+          let zoom = Number(this.el.getAttribute('zoom'));
+          let newZoom = zoom + delta;
+          if (newZoom <= 1) {
+            newZoom = zoom;
+          }
+          if (newZoom > 5) {
+            newZoom = zoom;
+          }
+          this.el.setAttribute('zoom', newZoom);
+        }
+      });
+
       AFRAME.registerComponent('measure-angle', {
         init: function() {
           this.el.addEventListener('raycaster-intersected', evt => {
@@ -145,7 +166,7 @@
 		  <a-entity id="rightHand" laser-controls="hand: right" raycaster="objects: [gui-interactable]"></a-entity>
       
       <a-entity id='cameraWrapper'>
-        <a-camera wasd-controls-enabled="false" look-controls="reverseMouseDrag: true"></a-camera>
+        <a-camera zoomable zoom=1 wasd-controls-enabled="false" look-controls="reverseMouseDrag: true"></a-camera>
       </a-entity>
 
 
