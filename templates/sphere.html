@@ -74,13 +74,26 @@
         }
       });
 
-      $.urlParam = function(name){
+      AFRAME.registerComponent('rotation-reader', {
+        tick: function () {
+          //console.log(this.el.object3D.rotation);
+          $.setUrlParam("angle", this.el.object3D.rotation["_x"]);
+        }
+      });
+
+      $.urlParam = function(name) {
         var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
         if (results) {
           return results[1] || null;
         } else {
           return null;
         }
+      }
+
+      $.setUrlParam = function(name, value) {
+        var url = new URL(window.location);
+        url.searchParams.set(name, value);
+        return url;
       }
 
       jQuery.fn.exists = function(){return this.length>0;}
@@ -98,9 +111,7 @@
           let target_id = e.target.id.slice(2);
           set_sphere(target_id);
 
-          var url = new URL(window.location);
-          url.searchParams.set("id", target_id);
-          window.history.pushState(null, document.title, url.href);
+          window.history.pushState(null, document.title, $.setUrlParam("id", target_id));
         });
       }
 
@@ -109,16 +120,14 @@
       }
 
       function set_cam_rotation(angle) {
-        console.log(angle);
         let controls = document.querySelector('a-camera').components['look-controls'];
         //controls.pitchObject.rotation.x = 0;
         controls.yawObject.rotation.y = 0;
-        $("#cameraWrapper")[0].object3D.rotation.set(0, (180-angle)*(Math.PI/180), 0);
+        $("#cameraWrapper")[0].object3D.rotation.set(0, angle*(Math.PI/180), 0);
       }
 
       function append_sphere_asset(id) {
         if (!$(`#sp${id}`).exists()) {
-          console.log(id);
           $("#assets").append(`<img id="sp${id}" crossorigin="anonymous" src="/static/spheres/${id}.jpg">`);
         }
       }
@@ -134,7 +143,10 @@
           draw_arrows(sphere_data);
 
           if (PREV_SPHERE) {
-            set_cam_rotation(sphere_data["neighbours"].filter((n) => n["id"] == PREV_SPHERE)[0]["angle"]);
+            set_cam_rotation((sphere_data["neighbours"].filter((n) => n["id"] == PREV_SPHERE)[0]["angle"]) - 180);
+          } else if ($.urlParam("angle")) {
+            console.log($.urlParam("angle"));
+            set_cam_rotation($.urlParam("angle"));
           }
 
           $("#sky").attr("src", `#sp${id}`);
@@ -183,9 +195,6 @@
         } else {
           set_sphere("0209");
         }
-        if ($.urlParam("angle")) {
-          set_cam_rotation($.urlParam("angle"));
-        } 
       }
     </script>
   </body>
