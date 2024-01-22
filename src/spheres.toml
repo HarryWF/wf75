@@ -403,7 +403,7 @@ id = "0509"
 space = 5
 neighbours = [
     { id = "0508", angle = 180 },
-    { id = "2101", angle = 330 },
+    { id = "2101", angle = 359 },
     { id = "2603", angle = 290 },
 ]
 
