@@ -11,6 +11,18 @@
       var CUR_SPHERE = null;
       var SPHERE_QUEUE = [];
 
+      function wrapAngleDeg(angle) {
+        if (angle < 0) {
+          return angle + 360;
+        }
+
+        if (angle > 360) {
+          return angle - 360;
+        }
+
+        return angle;
+      }
+
       AFRAME.registerComponent('edges', {
         addedEdges: false,
         tick: function(time, timeDelta) {
@@ -84,6 +96,23 @@
           console.log("TRIGGER DOWN");
         }
       });
+      
+      AFRAME.registerComponent('sphere-rotation', {
+        schema: {
+          angle: {type: 'int', default: 0},
+        },
+        dependencies: ["look-controls"],
+        init: function() {
+        },
+        update: function() {
+          let camera = document.getElementById("camera");
+          let controls = camera.components["look-controls"];
+          let angleRad = (360 - this.data.angle) * Math.PI / 180;
+          console.log(`Setting rotation to ${angleRad}`)
+          controls.yawObject.rotation.set(0, angleRad, 0);
+          controls.magicWindowDeltaEuler.set(0, 0, 0);
+        }
+      });
 
       $.urlParam = function(name){
         var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
@@ -124,19 +153,6 @@
         $(".arrow").remove();
       }
 
-      function set_cam_rotation(angle) {
-        let controls = document.querySelector('a-camera').components['look-controls'];
-        //controls.pitchObject.rotation.x = 0;
-        controls.yawObject.rotation.y = 0;
-        $("#cameraWrapper")[0].object3D.rotation.set(0, (180-angle)*(Math.PI/180), 0);
-        // $("#controller").object3D.rotation.set(0, (180-angle)*(Math.PI/180), 0);
-        // $("controller")[1].object3D.rotation.set(0, (270-angle)*(Math.PI/180), 0);
-      }
-
-      function set_sphere_rotation(angle) {
-
-      }
-
       function get_nearest_arrow_id() {
 
       }
@@ -160,14 +176,15 @@
         $.ajax({url: `../api/sphere_data/${id}`, success: function(sphere_data){
           clear_arrows();
           draw_arrows(sphere_data);
-          try {
-            if (PREV_SPHERE) {
-              set_cam_rotation(sphere_data["neighbours"].filter((n) => n["id"] == PREV_SPHERE)[0]["angle"]);
-            } else if ($.urlParam("angle")) {
-              console.log($.urlParam("angle"));
-              set_cam_rotation($.urlParam("angle"));
-            }
-          } catch (e) {} 
+
+          if (PREV_SPHERE) {
+            let angleToNeighbour = sphere_data["neighbours"].filter((n) => n["id"] == PREV_SPHERE)[0]["angle"];
+            let angleFromNeighbour = wrapAngleDeg(angleToNeighbour - 180);
+            $("#camera")[0].setAttribute('sphere-rotation', {angle: angleFromNeighbour});
+          } else if ($.urlParam("angle")) {
+            console.log($.urlParam("angle"));
+            $("#camera")[0].setAttribute('sphere-rotation', {angle: $.urlParam("angle")});
+          }
 
           $("#sky").attr("src", `#sp${id}`);
 
@@ -201,15 +218,16 @@
           animation__scale_reverse="property: scale; to: 0.1 0.1 0.1; dur: 100; startEvents: mouseleave">
         </a-mixin>
       </a-assets>
-      <a-sky id="sky" class="clickable" src="#sp" rotation="0 90 0" measure-angle></a-sky>
+      <a-sky id="sky" class="clickable" src="#sp" measure-angle></a-sky>
       <a-circle color="#FFF" radius="175" position="0 -450 0" rotation="-90 0 0"></a-circle>
+
 
       <!-- <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: [gui-interactable]"></a-entity> -->
 		  <!-- <a-entity super-hands oculus-touch-controls="hand: left" laser-controls></a-entity>
       <a-entity super-hands oculus-touch-controls="hand: right" laser-controls></a-entity> -->
       
       <a-entity id='cameraWrapper'>
-        <a-camera id="camera" zoomable zoom=1 wasd-controls-enabled="false" look-controls="reverseMouseDrag: true"></a-camera>
+        <a-camera sphere-rotation="angle: 0" id="camera" zoomable zoom=1 wasd-controls-enabled="false" look-controls="reverseMouseDrag: true"></a-camera>
         <a-entity id="controller" raycaster="objects: .arrow" laser-controls="hand: left"></a-entity>
         <a-entity id="controller" raycaster="objects: .arrow" laser-controls="hand: right"></a-entity>
       </a-entity>
